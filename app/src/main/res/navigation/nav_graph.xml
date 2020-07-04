@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/DSMHtFragment">
+
+    <fragment
+        android:id="@+id/DSMHtFragment"
+        android:name="vn.edu.ntu.nbd.bai1.DSMHtFragment"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_first" >
+        <action
+            android:id="@+id/action_DSMHtFragment_to_DSGHFragment"
+            app:destination="@id/DSGHFragment" />
+        <action
+            android:id="@+id/action_DSMHtFragment_to_themMHFragment"
+            app:destination="@id/themMHFragment"
+            app:popUpTo="@id/DSGHFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/muaHangFragment"
+        android:name="vn.edu.ntu.nbd.bai1.MuaHangFragment"
+        android:label="fragment_mua_hang"
+        tools:layout="@layout/fragment_mua_hang" >
+        <action
+            android:id="@+id/action_muaHangFragment_to_DSMHtFragment"
+            app:destination="@id/DSMHtFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/DSGHFragment"
+        android:name="vn.edu.ntu.nbd.bai1.DSGHFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second" >
+        <action
+            android:id="@+id/action_DSGHFragment_to_muaHangFragment"
+            app:destination="@id/muaHangFragment"
+            app:popUpTo="@id/DSGHFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/themMHFragment"
+        android:name="vn.edu.ntu.nbd.bai1.ThemMHFragment"
+        android:label="fragment_them_m_h"
+        tools:layout="@layout/fragment_them_m_h" >
+        <action
+            android:id="@+id/action_themMHFragment_to_DSMHtFragment"
+            app:destination="@id/DSMHtFragment"
+            />
+    </fragment>
+
+</navigation>
