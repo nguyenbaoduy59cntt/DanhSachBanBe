@@ -3,6 +3,7 @@
     package="vn.edu.ntu.nbd.bai1">
 
     <application
+        android:name="vn.edu.ntu.nbd.controller.Controller"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

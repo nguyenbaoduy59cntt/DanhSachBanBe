@@ -15,7 +15,7 @@
         <action
             android:id="@+id/action_DSMHtFragment_to_themMHFragment"
             app:destination="@id/themMHFragment"
-            app:popUpTo="@id/DSGHFragment"/>
+            app:popUpTo="@id/DSMHtFragment"/>
     </fragment>
 
     <fragment
