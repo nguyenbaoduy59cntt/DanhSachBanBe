@@ -2,11 +2,20 @@ package vn.edu.ntu.nbd.bai1;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import vn.edu.ntu.nbd.controller.IController;
+import vn.edu.ntu.nbd.model.Product;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,9 +65,39 @@ public class ThemMHFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_them_m_h, container, false);
     }
+
+    //[41] đưa dữ liệu đổ vào DSMH
+    //tạo ra onViewCreated
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //đổ biến vào đây
+        final EditText Them_edt_ten, Them_edt_gia, Them_edt_mota;
+        Button Them_btn;
+
+        //addView
+        Them_edt_ten = view.findViewById(R.id.Them_edt_ten);
+        Them_edt_gia = view.findViewById(R.id.Them_edt_gia);
+        Them_edt_mota = view.findViewById(R.id.Them_edt_mota);
+        Them_btn = view.findViewById(R.id.Them_btn);
+
+        //addEvent
+        Them_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IController controller= (IController) getActivity().getApplication();
+                //Khi click vào nút thêm, thì hệ thống sẽ tạo ra 1 Product mới, và dữ liệu sẽ lấy từ các edittext này.
+                Product p = new Product(Them_edt_ten.getText().toString(),new Integer(Them_edt_gia.getText().toString()), Them_edt_mota.getText().toString());
+                controller.listProduct().add(p);
+                Toast.makeText(getActivity(), "Đã thêm " + p.getName()+ " vào giỏ hàng", Toast.LENGTH_LONG).show();
+                NavHostFragment.findNavController(ThemMHFragment.this).navigate(R.id.action_themMHFragment_to_DSMHtFragment);
+            }
+        });
+    }
+    //Xong thằng này thì qua bước 42 để làm thêm cái thanh toán khi click vào mua hàng
 }

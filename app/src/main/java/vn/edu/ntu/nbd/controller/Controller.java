@@ -11,6 +11,8 @@ public class Controller extends Application implements IController
 {
     //[15] tạo mảng chứa sản phẩm
     ArrayList<Product> listProduct = new ArrayList<>();
+    //[32]
+    ArrayList<Product> listProductGH = new ArrayList<>();
 
     //[16] tạo constructor cho nó để khởi tạo product (tiếp theo, những sản phẩm này sẽ hiển thị ở đâu, thì mình qua bên đó làm tiếp)
     public Controller() {
@@ -30,5 +32,30 @@ public class Controller extends Application implements IController
     @Override
     public ArrayList<Product> listProduct() {
         return listProduct;
+    }
+
+    @Override
+    public ArrayList<Product> listProductGH() {
+        return listProductGH;
+    }
+
+    //[33]
+    @Override
+    public boolean Check(Product p) {
+        if(listProductGH.contains(p))
+            return false;
+        else
+        {
+             listProductGH.add(p);
+             return true;
+        }
+    }
+    // XOng bước này, thì mình tạo sự kiện nút bấm cho nút thêm vào giỏ => qua DSMH
+
+    //[43] phải thực hiện vì mới khai báo nó bên IController
+    @Override
+    public void Clear()
+    {
+        listProductGH.clear();
     }
 }

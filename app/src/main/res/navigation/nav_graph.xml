@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/DSMHtFragment"
-        android:name="vn.edu.ntu.nbd.bai1.DSMHtFragment"
+        android:name="vn.edu.ntu.nbd.bai1.DSMHFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" >
         <action

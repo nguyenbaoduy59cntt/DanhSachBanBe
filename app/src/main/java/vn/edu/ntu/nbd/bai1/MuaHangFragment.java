@@ -2,11 +2,19 @@ package vn.edu.ntu.nbd.bai1;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import vn.edu.ntu.nbd.controller.IController;
+import vn.edu.ntu.nbd.model.Product;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,15 +36,7 @@ public class MuaHangFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MuaHangFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static MuaHangFragment newInstance(String param1, String param2) {
         MuaHangFragment fragment = new MuaHangFragment();
         Bundle args = new Bundle();
@@ -61,4 +61,26 @@ public class MuaHangFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mua_hang, container, false);
     }
+
+    //Tính tiền khi nhấn nút mua hàng
+    //[43] Khai báo ra onViewCreated
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //khai báo biến
+        TextView ThanhToan_txtTongTien;
+        //addview
+        ThanhToan_txtTongTien = view.findViewById(R.id.ThanhToan_txtTongTien);
+
+        //Lấy cái mảng ds product ra
+        IController controller = (IController) getActivity().getApplication();
+        ArrayList<Product> products = controller.listProductGH();
+
+        int k= 0;
+        for (Product p:products)
+        {
+            k = k + p.getPrice();
+        }
+        ThanhToan_txtTongTien.setText(Integer.toString(k) + " VND");
+    } // Xongggggggggggggggg nhá
 }
